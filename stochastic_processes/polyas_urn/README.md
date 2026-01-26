@@ -1,7 +1,7 @@
 ## Polya’s urn: reinforcement and a limiting random variable
 
 This project explores Pólya’s urn as a simple reinforcement process.
-See Stochastic Calculus: An Introduction with Applications by G. F. Lawler for more details.
+See Chapter I of Stochastic Calculus: An Introduction with Applications by G. F. Lawler for more details.
 
 ### What is implemented
 - Simulation of the proportion of red balls in the urn over time

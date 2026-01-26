@@ -1,6 +1,7 @@
 ## Standard Brownian motion: sample paths and variability
 
 This project explores basic properties of standard Brownian motion through simulation.
+See Chapter II of Stochastic Calculus: An Introduction with Applications by G. F. Lawler for more details.
 
 ### What is implemented
 - Simulation of standard Brownian motion paths over a fixed time interval
