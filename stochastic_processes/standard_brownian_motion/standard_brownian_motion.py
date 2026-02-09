@@ -68,10 +68,16 @@ def main():
 
     # Analytical probability calculation
     from scipy.stats import norm
-    analytical_prob = norm.cdf(2 / np.sqrt(time + 1e-10))
+    analytical_prob = norm.cdf(threshold / np.sqrt(time + 1e-10))
     ax3.plot(time, analytical_prob, 'r--', label="Analytical Probability")
 
     fig.tight_layout()
+    # Determine probability that a given run stays below threshold for the entire time
+    count_below_threshold_full = np.sum(np.all(all_B_t < threshold, axis=1))
+    print(f'Estimated probability that B(1) < {threshold}:',
+          count_below_threshold_full / multiple_runs)
+    print(f'Analytical probability that B(1) < {threshold}:',
+          2 * norm.cdf(threshold) - 1)
     plt.show()
 
 
