@@ -81,11 +81,16 @@ def main():
     plt.show()
 
 
-def perform_single_run(delta_t, num_steps, drift=0.0):
+def perform_single_run(delta_t,
+                       num_steps,
+                       drift=0.0,
+                       sigma=1.0,
+                       random_seed=None):
     B_t = np.zeros(num_steps)
+    np.random.seed(random_seed)
     for i in range(1, num_steps):
-        B_t[i] = B_t[
-            i - 1] + np.sqrt(delta_t) * np.random.normal() + drift * delta_t
+        B_t[i] = B_t[i - 1] + np.sqrt(
+            delta_t) * sigma * np.random.normal() + drift * delta_t
     return B_t
 
 

@@ -9,7 +9,7 @@ def main():
     sigma = 0.2  # Diffusion coefficient
 
     X0 = 1.0  # Initial value
-    T = 40.0  # Time horizon
+    T = 10.0  # Time horizon
     dt = 1e-2  # Time step
 
     # Perform a single simulation
@@ -101,12 +101,13 @@ def confidence_interval_analytical(X0, t, mu, sigma, confidence_level=0.9):
     return l, u
 
 
-def single_simulation(X0, T, dt, mu, sigma):
+def single_simulation(X0, T, dt, mu, sigma, random_seed=None):
     """Perform a single simulation of Geometric Brownian Motion."""
     N = int(T / dt)  # Number of time steps
     t = np.linspace(0, T, N)  # Time vector
     X = np.zeros(N)  # Initialize array for X values
     X[0] = X0  # Set initial condition
+    np.random.seed(random_seed)
 
     for i in range(1, N):
         X[i] = X[i - 1] + dX(X[i - 1], dt, mu, sigma)
@@ -116,7 +117,8 @@ def single_simulation(X0, T, dt, mu, sigma):
 
 def dX(X, dt, mu, sigma):
     """Compute the increment dX for Geometric Brownian Motion."""
-    dW = np.sqrt(dt) * np.random.normal(0, 1)  # Brownian increment
+    # How to use random seed for reproducibility? We can set the random seed at the beginning of the simulation.
+    dW = np.sqrt(dt) * np.random.normal(0, 1)
     return mu * X * dt + sigma * X * dW
 
 
